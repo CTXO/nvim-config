@@ -40,24 +40,24 @@ return require('packer').startup(function(use)
   --   	  {'L3MON4D3/LuaSnip'},     -- Required
   --     }
   -- }
-  -- use {
-  --     "windwp/nvim-autopairs",
-  --     config = function() require("nvim-autopairs").setup {} end
-  -- }
-  -- use({
-  --     "kylechui/nvim-surround",
-  --     tag = "*", -- Use for stability; omit to use `main` branch for the latest features
-  --     config = function()
-  --   	  require("nvim-surround").setup({
-  --   		  -- Configuration here, or leave empty to use defaults
-  --   	  })
-  --     end
-  -- })
+  use {
+      "windwp/nvim-autopairs",
+      config = function() require("nvim-autopairs").setup {} end
+  }
+  use({
+      "kylechui/nvim-surround",
+      tag = "*", -- Use for stability; omit to use `main` branch for the latest features
+      config = function()
+    	  require("nvim-surround").setup({
+    		  -- Configuration here, or leave empty to use defaults
+    	  })
+      end
+  })
 
-  -- use 'michaeljsmith/vim-indent-object'
+  use 'michaeljsmith/vim-indent-object'
   -- use 'preservim/nerdtree'
 
-  -- use 'ryanoasis/vim-devicons'
+	  -- use 'ryanoasis/vim-devicons'
 
   -- use {'ojroques/nvim-hardline'}
   -- use 'ThePrimeagen/vim-be-good'
