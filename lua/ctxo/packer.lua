@@ -58,6 +58,8 @@ return require('packer').startup(function(use)
 
   -- use {'ojroques/nvim-hardline'}
   -- use 'ThePrimeagen/vim-be-good'
+  --
+  use 'github/copilot.vim'
 
 end)
 
