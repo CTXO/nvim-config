@@ -30,3 +30,7 @@ vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
 vim.keymap.set("n", "<leader>bn", ":bnext<CR>")
 vim.keymap.set("n", "<leader>bp", ":bprevious<CR>")
 
+-- "Zoom" in and out of split windows
+vim.keymap.set("n", "<C-w>i", ":tab split<CR>")
+vim.keymap.set("n", "<C-w>z", ":tabclose<CR>")
+
