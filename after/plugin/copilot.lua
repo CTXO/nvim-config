@@ -1,6 +1,6 @@
-vim.keymap.set("n", "<leader>ce", ":Copilot enable<CR>")
-vim.keymap.set("n", "<leader>cd", ":Copilot disable<CR>")
-vim.keymap.set("n", "<leader>cs", ":Copilot status<CR>")
+-- vim.keymap.set("n", "<leader>ce", ":Copilot enable<CR>")
+-- vim.keymap.set("n", "<leader>cd", ":Copilot disable<CR>")
+-- vim.keymap.set("n", "<leader>cs", ":Copilot status<CR>")
 
 
 vim.keymap.set('i', '<C-L>', 'copilot#Accept("\\<CR>")', {

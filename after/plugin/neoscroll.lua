@@ -1,0 +1,18 @@
+-- require('neoscroll').setup({
+-- 	hide_cursor = false,
+-- 	cursor_scrolls_alone = true,
+-- 	duration_multiplier = 0.2,
+-- 	-- pre_hook = function()
+-- 	-- 	vim.cmd("normal! zz")
+-- 	-- end,
+-- 	mappings = {                 -- Keys to be mapped to their corresponding default scrolling animation
+-- 		'<C-u>', '<C-d>',
+-- 		'<C-b>', '<C-f>',
+-- 		'<C-y>', '<C-e>',
+-- 		'zt', 'zb',
+-- 	  },
+--
+-- 	ignored_events = {           -- Events ignored while scrolling
+-- 		  'WinScrolled'
+-- 	  },
+-- })

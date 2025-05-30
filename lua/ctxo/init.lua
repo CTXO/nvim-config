@@ -1,17 +1,58 @@
-vim.cmd('colorscheme rose-pine')
-
-
 vim.cmd([[ set nu rnu ]])
 vim.cmd([[ filetype indent on ]])
 vim.cmd([[ filetype plugin indent on ]])
 vim.cmd([[ set tabstop=4 ]])
 vim.cmd([[ set shiftwidth=4 ]])
-vim.cmd([[ set nocompatible ]])
 
-
-vim.opt.hlsearch = false
+vim.opt.autowriteall = false
+vim.opt.autowrite = false
+vim.opt.hlsearch = true
 vim.opt.scrolloff = 8
-vim.opt.updatetime = 50
+vim.o.mouse = 'a'
+-- vim.opt.updatetime = 50
+vim.opt.ignorecase = true
+vim.opt.smartcase = true
+-- vim.opt.iskeyword:remove("_")
+vim.opt.wildmenu = true
+-- Very slow on big projects
+-- vim.opt.path:append("**")
+vim.opt.splitright = true
+vim.opt.splitbelow = true
+vim.opt.ruler = false
+vim.o.completeopt = "menu,menuone,noinsert,noselect"
+vim.o.breakindent = true
+vim.o.breakindentopt = 'sbr'
+vim.o.undofile = true
+
+vim.o.updatetime = 250
+vim.o.inccommand = 'split'
+vim.o.cursorline = false
+vim.o.confirm = true
+vim.o.signcolumn = 'yes'
+vim.opt.cursorlineopt = 'screenline,number'
+vim.o.cursorcolumn = true
+
+vim.opt.list = false
+
+local limitedChars = {tab = '» ', trail = '·', lead = '-', leadmultispace = '---_', nbsp = '␣' }
+local busyChars = {
+  eol = '↲', tab = '» ', space = '␣', trail = '·', lead = '-', leadmultispace = '---_',
+  extends = '☛', precedes = '☚', conceal = '┊', nbsp = '☠', multispace = '␣␣␣_'
+}
+vim.api.nvim_create_user_command("LimitedChars", function()
+  vim.opt.listchars = limitedChars
+  vim.opt.list = true
+end, { desc = "Set listchars to limited" })
+
+vim.api.nvim_create_user_command("BusyChars", function()
+  vim.opt.listchars = busyChars
+  vim.opt.list = true
+end, { desc = "Set listchars to busy" })
+
+
+vim.api.nvim_create_user_command("NoChars", function()
+  vim.opt.list = false
+end, { desc = "Disable listchars" })
 
 
 -- ---
@@ -30,4 +71,37 @@ vim.api.nvim_create_autocmd('BufReadPost', {
   end,
 })
 
+-- Highlight when yanking (copying) text
+--  Try it with `yap` in normal mode
+--  See `:help vim.hl.on_yank()`
+vim.api.nvim_create_autocmd('TextYankPost', {
+  desc = 'Highlight when yanking text',
+  group = vim.api.nvim_create_augroup('kickstart-highlight-yank', { clear = true }),
+  callback = function()
+	-- Check which register was used for the yank
+	local event = vim.v.event
+	local reg = event.regname
+	local higroup = 'LocalYank'
+	if reg == '+' then
+		higroup = 'SystemYank'
+	end
 
+    vim.hl.on_yank({
+			timeout = 350,
+			higroup = higroup,
+			priority = 300,
+		})
+  end,
+})
+
+-- Add support for Django static and templates folders
+vim.api.nvim_create_autocmd("BufEnter", {
+  pattern = {'*.html', '*.py'},
+  callback = function()
+	-- Check if current buffer is a file 
+    vim.opt_local.path:append("*/static/")
+    vim.opt_local.path:append("static/")
+    vim.opt_local.path:append("*/templates/")
+    vim.opt_local.path:append("templates/")
+  end
+})
